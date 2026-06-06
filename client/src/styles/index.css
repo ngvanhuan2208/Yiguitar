@@ -1,0 +1,94 @@
+/* 1. Google Fonts — Be Vietnam Pro (Headings) & Inter (Body) */
+/* FIXED: Added Inter italic weights and full Be Vietnam Pro coverage */
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap");
+
+/* 2. Tailwind v4 directives */
+@import "tailwindcss";
+
+/* 3. Tailwind v4 theme extension — defines font-display & font-body utilities */
+@theme {
+  --font-display: "Be Vietnam Pro", sans-serif;
+  --font-body:    "Inter", sans-serif;
+  --font-mono:    ui-monospace, "Cascadia Code", monospace;
+}
+
+/* 4. Visual tokens from Figma */
+:root {
+  --background: #FFFFFF;
+  --primary: #00c7d3;
+  --accent: #92E4EC;
+  --accent-2: #9FE6EF;
+  --heading: #0F172A;
+  --cta: #111827;
+  --text: #0F172A;
+  --card: #FFFFFF;
+  --border: rgba(0,0,0,0.08);
+  --radius: 0.75rem;
+  color-scheme: light;
+}
+
+/* 5. Global reset & base styles */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  
+  /* FIXED: Set global font-style and weights for body text */
+  body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background);
+    color: var(--text);
+  }
+  
+  /* FIXED: Remove global italic inheritance from markdown headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.25;
+  }
+  
+  h1, h2, h3, h4 {
+    color: var(--heading);
+  }
+  
+  code, pre, kbd { font-family: var(--font-mono); }
+
+  /* FIXED: Added prose content typography reset */
+  .prose p,
+  .prose li,
+  .prose blockquote,
+  [class*="article"] p,
+  [class*="content"] p {
+    font-family: var(--font-body);
+    font-style: normal;
+  }
+
+  .prose blockquote,
+  [class*="article"] blockquote {
+    font-family: var(--font-body);
+    font-style: italic;
+  }
+
+  nav {
+    background-color: var(--background);
+  }
+
+  /* Utility-like helpers mapped to tokens */
+  .logo { color: var(--primary); }
+  .btn-cta { background: var(--cta); color: #fff; }
+  .text-heading { color: var(--heading); }
+  .hero-bg { background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%); }
+  .card { background: var(--card); border-radius: var(--radius); }
+}
+
+/* 6. Dark mode helper */
+.dark {
+  --background: #0F172A;
+  --text: #FFFFFF;
+}
